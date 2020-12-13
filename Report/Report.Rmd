@@ -1,0 +1,36 @@
+---
+title: "Root Finding App"
+subtitle: COP5090 Final Project Report
+authors: Ethan Bard, ebard4264@floridapoly.edu
+output: html_notebook
+---
+
+### Introduction
+  
+The objective of this project is to incorporate various root finding methods into a demonstrative Shiny application using R. The application interface provides the user the ability to select a desired method and apply it to multiple example functions. The results generated from applying the selected method to the example function are displayed in a plot which indicates the root or fixed point of the function. Additionally, the user is able to modify the parameters relevant to the method being used so that multiple solutions may be found if present. The motivation of this project is primarily to serve as practice in developing application dashboards using Shiny while implementing some of the computational methods covered in this course.
+
+### Methods
+
+This project uses the Shiny R package which is a library built for deploying interactive web apps directly using R code. The initial scope of this project requires that the app has controls which allow the user to select the desired root finding method, select the desired example function, and modify function parameters based on the relevant method. The methods that are currently incorporated in this application are the following:
+
+  + Fixed Point
+  + Newton-Raphson
+  + Secant
+  + Bisection
+  
+#### Fixed Point
+
+The fixed-point method is an iterative method for solving $g(x) = x$. The `fixedpoint` function from the spuRs R package is applied to the example function selected by the user and returns the value of x at which $f(x) = x$ if one is present within the maximum iterations. The user may change the value for the `x0` argument which is the initial guess at the fixed point. If a solution is found, the resulting value is indicated on a plot of the function. The example function provided for the user to apply the fixed-point method is $f(x) = cos(x)$.
+
+#### Root Finding
+
+The Newton-Raphson, Secant, and Bisection methods are iterative methods for solving $g(x) = 0$. The `newtonraphson` and `bisection` methods come from the spuRs R package while the `secant` method was created by the author as a solution to a previous homework assignment for this course. Each of these methods apply their respective algorithm to the example function selected by the user and returns the value of x at which $f(x) = 0$ if one is present within the maximum iterations. For the `newtonraphson` method, the user may change the value for `x0` which is the initial guess at the fixed point. For the `bisection` and `secant` methods, the user may change the values for `x0` and `x1` which are the lower and upper starting points. If a solution is found using the given parameters, the resulting root is returned and indicated on a plot of the function. The example functions provided for the user to apply the root finding methods are the following:
+
+  + $f(x) = cos(x)$
+  + $f(x) = cos(x) - x$
+  + $f(x) = log(x) - e^{-x}$
+  + $f(x) = sin(x) + sin(2x) + cos(3x)$
+
+### Conclusion
+
+The current version of this project satisfies the initial objective outlined in the introduction to this report. The application is functional and is able to correctly identify and plot the solutions produced by the fixed point and root finding methods, allowing the user to explore multiple methods and example functions. Additionally, the user can modify the function parameters which will reactively update the solution plotted on the graph if a solution is found. Should this project be continued, there are several features that could be incorporated to provide additional control to the user. For instance, extra options could be provided to the user to fine tune other function parameters such as `max.iter` and `tol`. Furthermore, the application could also be expanded to allow the user to input any desired function by typing in R code. 
